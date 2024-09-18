@@ -27,7 +27,7 @@ public class RestAugustoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(RestAugustoApplication.class, args);
 
-		System.out.println("Aguante macri");
+		System.out.println("Andando! ejej");
 	}
 
 	//fuera del main crea los objetos
