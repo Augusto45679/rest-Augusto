@@ -16,7 +16,6 @@ import java.util.Set;
 @NoArgsConstructor
 @Setter
 @Getter
-@ToString
 @Builder
 @Entity
 public class Persona {
@@ -30,6 +29,7 @@ public class Persona {
     @JoinColumn(name = "fk_domicilio")
     private Domicilio domicilio;
 
+    @Builder.Default
     @OneToMany(cascade = CascadeType.PERSIST,mappedBy = "persona",orphanRemoval = true)
     private Set<Libro> libros = new HashSet<>(); // composicion
 

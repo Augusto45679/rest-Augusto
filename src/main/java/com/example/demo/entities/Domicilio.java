@@ -3,6 +3,7 @@ package com.example.demo.entities;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Builder.Default;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,7 +16,6 @@ import java.util.Set;
 @NoArgsConstructor
 @Setter
 @Getter
-@ToString
 @Builder
 public class Domicilio {
     @Id
@@ -27,7 +27,8 @@ public class Domicilio {
     @OneToOne(mappedBy = "domicilio")
     private Persona persona;
 
-    @OneToMany(mappedBy = "Domicilio")
+
+    @OneToMany(mappedBy = "domicilio")
     private Set<Localidad> localidades;
 
 }

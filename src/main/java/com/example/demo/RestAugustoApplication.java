@@ -68,7 +68,7 @@ public class RestAugustoApplication {
 		List<Persona> recuperadas = personaRepository.findAll();
 		System.out.println(recuperadas);
 
-		logger.info("Detalles de la persona: {}",recuperadas.toString());
+		logger.info("Detalles de la persona: {}",recuperadas);
 
 		domi1.setCalle("Alberdi");
 		personaRepository.save(person1);

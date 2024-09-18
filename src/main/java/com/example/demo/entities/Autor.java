@@ -11,7 +11,6 @@ import java.util.List;
 @NoArgsConstructor
 @Setter
 @Getter
-@ToString
 @Builder
 @Entity
 public class Autor {
@@ -24,7 +23,7 @@ public class Autor {
 
     @Builder.Default
     @ManyToMany(cascade = CascadeType.ALL) // las operaciones que se realicen sobre Autor afectar todos los libros asociados que tenga
-    private List<Libro> libros = new ArrayList<>();
+    private List<Libro> libro = new ArrayList<>();
 
 
 }

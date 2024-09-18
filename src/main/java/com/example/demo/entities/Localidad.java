@@ -9,7 +9,6 @@ import lombok.*;
 @NoArgsConstructor
 @Setter
 @Getter
-@ToString
 @Builder
 @Entity
 public class Localidad {
