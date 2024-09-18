@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 
+import com.example.demo.entities.Autor;
 import com.example.demo.entities.Domicilio;
 import com.example.demo.repositories.DomicilioRepository;
 import jakarta.transaction.Transactional;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DomicilioService implements BaseService<Domicilio>{
@@ -18,30 +20,61 @@ public class DomicilioService implements BaseService<Domicilio>{
     @Override
     @Transactional
     public List<Domicilio> findAll() throws Exception {
-        return List.of();
+        try{
+            List<Domicilio> domicilios = domicilioRepository.findAll();
+            return domicilios;
+        }catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
     }
 
     @Override
     @Transactional
     public Domicilio findById(Long id) throws Exception {
-        return null;
+        try{
+            Optional<Domicilio> domiOptional = domicilioRepository.findById(id);
+            return domiOptional.get();
+        }catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
     }
 
     @Override
     @Transactional
     public Domicilio save(Domicilio entity) throws Exception {
-        return null;
+        try{
+            entity =domicilioRepository.save(entity);
+            return entity;
+
+        }catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
     }
 
     @Override
     @Transactional
     public Domicilio update(Long id, Domicilio entity) throws Exception {
-        return null;
+        try{
+            Optional<Domicilio> domiOptional = domicilioRepository.findById(id);
+            Domicilio domicilio = domiOptional.get();
+            domicilio = domicilioRepository.save(entity);
+            return domicilio;
+        }catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
     }
 
     @Override
     @Transactional
     public boolean delete(Long id) throws Exception {
-        return false;
+        try{
+            if (domicilioRepository.existsById(id)) {
+                domicilioRepository.deleteById(id);
+                return true;
+            } else { return false; }
+
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
     }
 }

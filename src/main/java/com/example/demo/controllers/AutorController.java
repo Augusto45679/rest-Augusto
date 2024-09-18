@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "*")
 @RequestMapping(path = "api/v1/autores")
 public class AutorController {
-    //getAll getOne save update delete
+
     @Autowired
     private AutorService autorService;
 

@@ -1,11 +1,13 @@
 package com.example.demo.services;
 
+import com.example.demo.entities.Autor;
 import com.example.demo.entities.Libro;
 import com.example.demo.repositories.LibroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LibroService implements BaseService<Libro> {
@@ -15,26 +17,57 @@ public class LibroService implements BaseService<Libro> {
 
     @Override
     public List<Libro> findAll() throws Exception {
-        return List.of();
+        try{
+            List<Libro> libros = libroRepository.findAll();
+            return libros;
+        }catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
     }
 
     @Override
     public Libro findById(Long id) throws Exception {
-        return null;
+        try{
+            Optional<Libro> libroOptional = libroRepository.findById(id);
+            return libroOptional.get();
+        }catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
     }
 
     @Override
     public Libro save(Libro entity) throws Exception {
-        return null;
+        try{
+            entity = libroRepository.save(entity);
+            return entity;
+
+        }catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
     }
 
     @Override
     public Libro update(Long id, Libro entity) throws Exception {
-        return null;
+        try{
+            Optional<Libro> libroOptional = libroRepository.findById(id);
+            Libro libro = libroOptional.get();
+            libro = libroRepository.save(entity);
+            return libro;
+        }catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
     }
 
     @Override
     public boolean delete(Long id) throws Exception {
-        return false;
+        try{
+            if (libroRepository.existsById(id)) {
+                libroRepository.deleteById(id);
+                return true;
+            } else { return false; }
+
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
     }
 }
