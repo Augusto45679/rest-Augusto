@@ -1,15 +1,18 @@
 package com.example.demo.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Table
-@Data //esto incluye @Equals @HashCode @toString @Getter @Setter @Builder
+import java.util.ArrayList;
+import java.util.List;
 
+@Table(name="Autor")
 @AllArgsConstructor
 @NoArgsConstructor
+@Setter
+@Getter
+@ToString
+@Builder
 @Entity
 public class Autor {
     @Id
@@ -18,5 +21,10 @@ public class Autor {
     private String nombre;
     private String apellido;
     private String biografia;
+
+    @Builder.Default
+    @ManyToMany(cascade = CascadeType.ALL) // las operaciones que se realicen sobre Autor afectar todos los libros asociados que tenga
+    private List<Libro> libros = new ArrayList<>();
+
 
 }

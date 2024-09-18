@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Table
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,7 +25,13 @@ public class Persona {
     private Long id;
     private String nombre;
     private String apellido;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_domicilio")
     private Domicilio domicilio;
+
+    @OneToMany(cascade = CascadeType.PERSIST,mappedBy = "persona",orphanRemoval = true)
+    private Set<Libro> libros = new HashSet<>(); // composicion
+
+
 }

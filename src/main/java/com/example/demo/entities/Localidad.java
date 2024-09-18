@@ -1,5 +1,24 @@
 package com.example.demo.entities;
 
-public class Localidad {
 
+import jakarta.persistence.*;
+import lombok.*;
+
+@Table
+@AllArgsConstructor
+@NoArgsConstructor
+@Setter
+@Getter
+@ToString
+@Builder
+@Entity
+public class Localidad {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String denominacion;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "fk_domicilio")
+    private Domicilio domicilio;
 }
