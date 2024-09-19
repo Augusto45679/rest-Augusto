@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
+
 
 import java.util.HashSet;
 import java.util.Set;
@@ -32,6 +32,5 @@ public class Persona {
     @Builder.Default
     @OneToMany(cascade = CascadeType.PERSIST,mappedBy = "persona",orphanRemoval = true)
     private Set<Libro> libros = new HashSet<>(); // composicion
-
 
 }
