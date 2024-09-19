@@ -58,3 +58,5 @@ __@RequestBody Persona entity__: Indica que el cuerpo de la solicitud HTTP debe 
 "edad": 30
 }` 
 json
+2
+2
